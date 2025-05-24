@@ -2,120 +2,50 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Formulir Pendaftaran SMK Islam Al-Makiyah</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Formulir Pendaftaran Sederhana</title>
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script>
-    emailjs.init("E-YJ21ITHFL1YYEYz"); // Ganti dengan Public Key Anda
+    emailjs.init('E-YJ21ITHFL1YYEYz');
   </script>
-  <style>
-    body { font-family: Arial, sans-serif; padding: 2rem; }
-    label { display: block; margin-top: 1rem; }
-    input, select, textarea { width: 100%; padding: 0.5rem; margin-top: 0.25rem; }
-    button { margin-top: 1.5rem; padding: 0.75rem 2rem; }
-  </style>
 </head>
 <body>
-  <h1>Formulir Pendaftaran SMK Islam Al-Makiyah</h1>
+  <h1>Formulir Pendaftaran</h1>
   <form id="formPendaftaran" onsubmit="submitForm(event)">
-    <label>Nama Lengkap <input name="nama" required /></label>
-    <label>NISN <input name="nisn" required /></label>
-    <label>Jenis Kelamin
-      <select name="jenis_kelamin" required>
-        <option value="">Pilih</option>
-        <option>Pria</option>
-        <option>Wanita</option>
-      </select>
-    </label>
-    <label>Tempat Lahir <input name="tempat_lahir" required /></label>
-    <label>Tanggal Lahir <input type="date" name="tanggal_lahir" required /></label>
-    <label>Asal Sekolah <input name="asal_sekolah" required /></label>
-    <label>Memiliki KJP?
-      <select name="kjp" required>
-        <option value="">Pilih</option>
-        <option>Ya</option>
-        <option>Tidak</option>
-      </select>
-    </label>
-    <label>No HP <input name="no_hp" required /></label>
-    <label>Email <input type="email" name="email" required /></label>
-    <label>Alamat <textarea name="alamat" required></textarea></label>
-    <label>Darimana mendapatkan informasi SMK Islam Almakiyah?
-      <select name="info" required>
-        <option value="">Pilih</option>
-        <option>WhatsApp</option>
-        <option>Instagram</option>
-        <option>Facebook</option>
-        <option>Keluarga</option>
-        <option>Teman</option>
-      </select>
-    </label>
-    <label>Alasan Memilih SMK Islam Al-Makiyah <textarea name="alasan" required></textarea></label>
-    <label>Minat Jurusan
-      <select name="jurusan" required>
-        <option value="">Pilih</option>
-        <option>Teknik Komputer Jaringan</option>
-        <option>Broadcasting</option>
-      </select>
-    </label>
-    <label>Akta Lahir <input type="file" name="akta" required /></label>
-    <label>Foto Profil <input type="file" name="foto" required /></label>
-    <label>Kartu Keluarga <input type="file" name="kk" required /></label>
-    <label>KTP Orang Tua/Wali <input type="file" name="ktp" required /></label>
-    <label>Apakah kamu Yatim?
-      <select name="yatim">
-        <option value="">Pilih</option>
-        <option>Ya</option>
-        <option>Tidak</option>
-      </select>
-    </label>
-    <label>Surat Pindah Sekolah (Jika Pindahan) <input type="file" name="pindahan" /></label>
-
+    <label>
+      Nama Lengkap:<br />
+      <input type="text" name="from_name" required />
+    </label><br /><br />
+    <label>
+      Email:<br />
+      <input type="email" name="from_email" required />
+    </label><br /><br />
+    <label>
+      Pesan:<br />
+      <textarea name="message" required></textarea>
+    </label><br /><br />
     <button type="submit">Kirim</button>
   </form>
 
   <script>
-    async function submitForm(event) {
-      event.preventDefault();
-      const form = document.getElementById("formPendaftaran");
-      const formData = new FormData(form);
+    function submitForm(e) {
+      e.preventDefault();
+      const form = e.target;
 
-      // 1. Generate PDF
-      const {{ jsPDF }} = window.jspdf;
-      const doc = new jsPDF();
-      doc.setFontSize(14);
-      doc.text("Formulir Pendaftaran SMK Islam Al-Makiyah", 10, 10);
-
-      let y = 20;
-      formData.forEach((value, key) => {
-        if (value instanceof File) return; // skip file preview
-        doc.text(`${key}: ${value}`, 10, y);
-        y += 10;
-      });
-
-      const pdfBlob = doc.output("blob");
-      const pdfFile = new File([pdfBlob], "formulir.pdf", { type: "application/pdf" });
-
-      // 2. Send via EmailJS
-      const emailData = {
-        to_email: formData.get("email"),
-        from_name: formData.get("nama"),
-        message: "Terima kasih telah mendaftar di SMK Islam Al-Makiyah.",
+      const formData = {
+        from_name: form.from_name.value,
+        from_email: form.from_email.value,
+        message: form.message.value
       };
 
-      const attachments = {
-        files: [pdfFile]
-      };
-
-      emailjs.send("service_yr19z8h", "template_g21vzk9", emailData, "E-YJ21ITHFL1YYEYz")
+      emailjs.send('service_yr19z8h', 'template_g21vzk9', formData)
         .then(() => {
-          alert("Data berhasil dikirim dan PDF berhasil dikirim melalui email!");
+          alert('Email berhasil dikirim!');
           form.reset();
         })
         .catch(err => {
-          console.error("Gagal mengirim email:", err);
-          alert("Terjadi kesalahan saat mengirim email.");
+          console.error('Gagal mengirim email:', err);
+          alert('Gagal mengirim email. Cek console untuk detail error.');
         });
     }
   </script>
