@@ -1,53 +1,82 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Formulir Pendaftaran Sederhana</title>
-  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-  <script>
-    emailjs.init('E-YJ21ITHFL1YYEYz');
-  </script>
-</head>
-<body>
-  <h1>Formulir Pendaftaran</h1>
-  <form id="formPendaftaran" onsubmit="submitForm(event)">
-    <label>
-      Nama Lengkap:<br />
-      <input type="text" name="from_name" required />
-    </label><br /><br />
-    <label>
-      Email:<br />
-      <input type="email" name="from_email" required />
-    </label><br /><br />
-    <label>
-      Pesan:<br />
-      <textarea name="message" required></textarea>
-    </label><br /><br />
-    <button type="submit">Kirim</button>
-  </form>
-
-  <script>
-    function submitForm(e) {
-      e.preventDefault();
-      const form = e.target;
-
-      const formData = {
-        from_name: form.from_name.value,
-        from_email: form.from_email.value,
-        message: form.message.value
-      };
-
-      emailjs.send('service_yr19z8h', 'template_g21vzk9', formData)
-        .then(() => {
-          alert('Email berhasil dikirim!');
-          form.reset();
-        })
-        .catch(err => {
-          console.error('Gagal mengirim email:', err);
-          alert('Gagal mengirim email. Cek console untuk detail error.');
-        });
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulir Pendaftaran Murid Baru SMK Islam-Almakiyah</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { font-family: 'Poppins', sans-serif; background-color: #f0f7ff; }
+    .form-container { background: linear-gradient(135deg, #ffffff 0%, #f8faff 100%); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05); }
+    .header-bg { background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%); }
+    input:focus, select:focus, textarea:focus {
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
     }
+    .btn-primary {
+      background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+      transition: all 0.3s ease;
+    }
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+    }
+    .btn-secondary { transition: all 0.3s ease; }
+    .btn-secondary:hover {
+      background-color: #f3f4f6;
+      transform: translateY(-2px);
+    }
+    .success-message {
+      display: none;
+      animation: fadeIn 0.5s ease-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="min-h-screen py-8 px-4 sm:px-6">
+  <!-- (Seluruh isi form kamu tetap seperti sebelumnya) -->
+
+  <!-- Tambahkan skrip ini di akhir sebelum penutup body -->
+  <script>
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzcn4kDyVBSFx91pHSFVTmBEgzXx_AQOzlsFjKxV1810VIRlZeJIY-WCwewJt7KrLmt/exec"; // Ganti dengan URL Web App GAS kamu
+
+    document.getElementById('registrationForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const form = e.target;
+      const formData = new FormData(form);
+      const jsonData = {};
+
+      formData.forEach((value, key) => {
+        jsonData[key] = value;
+      });
+
+      try {
+        const response = await fetch(SCRIPT_URL, {
+          method: 'POST',
+          body: JSON.stringify(jsonData),
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+          form.style.display = 'none';
+          document.getElementById('successMessage').style.display = 'block';
+        } else {
+          alert("Gagal mengirim data: " + result.message);
+        }
+      } catch (err) {
+        console.error('Error:', err);
+        alert('Terjadi kesalahan saat mengirim data.');
+      }
+    });
   </script>
 </body>
 </html>
