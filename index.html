@@ -39,7 +39,283 @@
 </head>
 <body class="min-h-screen py-8 px-4 sm:px-6">
   <!-- (Seluruh isi form kamu tetap seperti sebelumnya) -->
-
+  <div class="max-w-4xl mx-auto">
+        <div class="form-container rounded-xl overflow-hidden">
+            <!-- Header -->
+            <div class="header-bg py-6 px-8 text-white">
+                <h1 class="text-2xl sm:text-3xl font-bold">Formulir Pendaftaran Murid Baru</h1>
+                <p class="mt-2 opacity-90">SMK Islam-Almakiyah</p>
+                <p class="mt-1 opacity-90">Silakan lengkapi formulir di bawah ini dengan informasi yang benar</p>
+            </div>
+            
+            <!-- Form -->
+            <form id="registrationForm" class="p-6 sm:p-8 space-y-6">
+                <!-- Data Pribadi -->
+                <div class="space-y-4">
+                    <h2 class="text-xl font-semibold text-gray-800 border-b pb-2">Data Pribadi</h2>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label for="nama_lengkap" class="block text-sm font-medium text-gray-700 mb-1">Nama Lengkap <span class="text-red-500">*</span></label>
+                            <input type="text" id="nama_lengkap" name="nama_lengkap" required 
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none">
+                        </div>
+                        <div>
+                            <label for="nama_panggilan" class="block text-sm font-medium text-gray-700 mb-1">Nama Panggilan</label>
+                            <input type="text" id="nama_panggilan" name="nama_panggilan" 
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none">
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div>
+                            <label for="tempat_lahir" class="block text-sm font-medium text-gray-700 mb-1">Tempat Lahir <span class="text-red-500">*</span></label>
+                            <input type="text" id="tempat_lahir" name="tempat_lahir" required 
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none">
+                        </div>
+                        <div>
+                            <label for="tanggal_lahir" class="block text-sm font-medium text-gray-700 mb-1">Tanggal Lahir <span class="text-red-500">*</span></label>
+                            <input type="date" id="tanggal_lahir" name="tanggal_lahir" required 
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none">
+                        </div>
+                        <div>
+                            <label for="jenis_kelamin" class="block text-sm font-medium text-gray-700 mb-1">Jenis Kelamin <span class="text-red-500">*</span></label>
+                            <select id="jenis_kelamin" name="jenis_kelamin" required 
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none">
+                                <option value="">Pilih</option>
+                                <option value="Laki-laki">Laki-laki</option>
+                                <option value="Perempuan">Perempuan</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="alamat" class="block text-sm font-medium text-gray-700 mb-1">Alamat Lengkap <span class="text-red-500">*</span></label>
+                        <textarea id="alamat" name="alamat" rows="3" required 
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none"></textarea>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label for="agama" class="block text-sm font-medium text-gray-700 mb-1">Agama</label>
+                            <select id="agama" name="agama" 
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none">
+                                <option value="">Pilih</option>
+                                <option value="Islam">Islam</option>
+                                <option value="Kristen">Kristen</option>
+                                <option value="Katolik">Katolik</option>
+                                <option value="Hindu">Hindu</option>
+                                <option value="Buddha">Buddha</option>
+                                <option value="Konghucu">Konghucu</option>
+                                <option value="Lainnya">Lainnya</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="kewarganegaraan" class="block text-sm font-medium text-gray-700 mb-1">Kewarganegaraan</label>
+                            <input type="text" id="kewarganegaraan" name="kewarganegaraan" value="Indonesia" 
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none">
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label for="no_telepon_siswa" class="block text-sm font-medium text-gray-700 mb-1">Nomor Telepon Siswa <span class="text-red-500">*</span></label>
+                            <input type="tel" id="no_telepon_siswa" name="no_telepon_siswa" required 
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none">
+                        </div>
+                        <div>
+                            <label for="email_siswa" class="block text-sm font-medium text-gray-700 mb-1">Email Siswa</label>
+                            <input type="email" id="email_siswa" name="email_siswa" 
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Data Orang Tua -->
+                <div class="space-y-4">
+                    <h2 class="text-xl font-semibold text-gray-800 border-b pb-2">Data Orang Tua</h2>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label for="nama_ayah" class="block text-sm font-medium text-gray-700 mb-1">Nama Ayah <span class="text-red-500">*</span></label>
+                            <input type="text" id="nama_ayah" name="nama_ayah" required 
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none">
+                        </div>
+                        <div>
+                            <label for="pekerjaan_ayah" class="block text-sm font-medium text-gray-700 mb-1">Pekerjaan Ayah</label>
+                            <input type="text" id="pekerjaan_ayah" name="pekerjaan_ayah" 
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none">
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label for="nama_ibu" class="block text-sm font-medium text-gray-700 mb-1">Nama Ibu <span class="text-red-500">*</span></label>
+                            <input type="text" id="nama_ibu" name="nama_ibu" required 
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none">
+                        </div>
+                        <div>
+                            <label for="pekerjaan_ibu" class="block text-sm font-medium text-gray-700 mb-1">Pekerjaan Ibu</label>
+                            <input type="text" id="pekerjaan_ibu" name="pekerjaan_ibu" 
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none">
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label for="no_telepon_ortu" class="block text-sm font-medium text-gray-700 mb-1">Nomor Telepon Orang Tua <span class="text-red-500">*</span></label>
+                            <input type="tel" id="no_telepon_ortu" name="no_telepon_ortu" required 
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none">
+                        </div>
+                        <div>
+                            <label for="email_ortu" class="block text-sm font-medium text-gray-700 mb-1">Email Orang Tua</label>
+                            <input type="email" id="email_ortu" name="email_ortu" 
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Data Pendidikan -->
+                <div class="space-y-4">
+                    <h2 class="text-xl font-semibold text-gray-800 border-b pb-2">Data Pendidikan</h2>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label for="nisn" class="block text-sm font-medium text-gray-700 mb-1">NISN (Nomor Induk Siswa Nasional) <span class="text-red-500">*</span></label>
+                            <input type="text" id="nisn" name="nisn" required 
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none">
+                        </div>
+                        <div>
+                            <label for="asal_sekolah" class="block text-sm font-medium text-gray-700 mb-1">Asal Sekolah <span class="text-red-500">*</span></label>
+                            <input type="text" id="asal_sekolah" name="asal_sekolah" required 
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none">
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label for="tingkat_kelas" class="block text-sm font-medium text-gray-700 mb-1">Tingkat/Kelas yang Dituju <span class="text-red-500">*</span></label>
+                            <select id="tingkat_kelas" name="tingkat_kelas" required 
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none">
+                                <option value="">Pilih</option>
+                                <option value="10">Kelas 10</option>
+                                <option value="11">Kelas 11</option>
+                                <option value="12">Kelas 12</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="kjp" class="block text-sm font-medium text-gray-700 mb-1">Memiliki KJP (Kartu Jakarta Pintar) <span class="text-red-500">*</span></label>
+                            <div class="flex gap-4 mt-2">
+                                <div class="flex items-center">
+                                    <input type="radio" id="kjp_ya" name="kjp" value="Ya" required
+                                        class="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500">
+                                    <label for="kjp_ya" class="ml-2 text-sm text-gray-700">Ya</label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input type="radio" id="kjp_tidak" name="kjp" value="Tidak" required
+                                        class="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500">
+                                    <label for="kjp_tidak" class="ml-2 text-sm text-gray-700">Tidak</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="prestasi" class="block text-sm font-medium text-gray-700 mb-1">Prestasi yang Pernah Diraih (Opsional)</label>
+                        <textarea id="prestasi" name="prestasi" rows="3" 
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none"></textarea>
+                    </div>
+                </div>
+                
+                <!-- Data Lainnya -->
+                <div class="space-y-4">
+                    <h2 class="text-xl font-semibold text-gray-800 border-b pb-2">Data Lainnya</h2>
+                    
+                    <div>
+                        <label for="sumber_info" class="block text-sm font-medium text-gray-700 mb-1">Mendapatkan Info SMK Islam-Almakiyah darimana <span class="text-red-500">*</span></label>
+                        <select id="sumber_info" name="sumber_info" required 
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none">
+                            <option value="">Pilih</option>
+                            <option value="WhatsApp">WhatsApp (WA)</option>
+                            <option value="Instagram">Instagram (IG)</option>
+                            <option value="Facebook">Facebook (FB)</option>
+                            <option value="Keluarga">Keluarga</option>
+                            <option value="Teman">Teman</option>
+                            <option value="Lainnya">Lainnya</option>
+                        </select>
+                        <div id="sumber_info_lainnya_container" class="mt-2 hidden">
+                            <input type="text" id="sumber_info_lainnya" name="sumber_info_lainnya" 
+                                placeholder="Sebutkan sumber informasi lainnya"
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="alasan" class="block text-sm font-medium text-gray-700 mb-1">Alasan Memilih SMK Islam-Almakiyah <span class="text-red-500">*</span></label>
+                        <textarea id="alasan" name="alasan" rows="3" required 
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none"></textarea>
+                    </div>
+                    
+                    <div>
+                        <label for="minat_jurusan" class="block text-sm font-medium text-gray-700 mb-1">Minat Jurusan <span class="text-red-500">*</span></label>
+                        <div class="flex flex-col sm:flex-row gap-4 mt-2">
+                            <div class="flex items-center">
+                                <input type="radio" id="jurusan_tkj" name="minat_jurusan" value="Teknik Komputer Jaringan" required
+                                    class="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500">
+                                <label for="jurusan_tkj" class="ml-2 text-sm text-gray-700">Teknik Komputer Jaringan</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" id="jurusan_broadcasting" name="minat_jurusan" value="Broadcasting" required
+                                    class="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500">
+                                <label for="jurusan_broadcasting" class="ml-2 text-sm text-gray-700">Broadcasting</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pernyataan -->
+                <div class="space-y-4">
+                    <div class="flex items-start">
+                        <div class="flex items-center h-5">
+                            <input id="pernyataan" name="pernyataan" type="checkbox" required
+                                class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+                        </div>
+                        <div class="ml-3 text-sm">
+                            <label for="pernyataan" class="font-medium text-gray-700">Saya menyatakan bahwa data yang diisi adalah benar dan dapat dipertanggungjawabkan <span class="text-red-500">*</span></label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Buttons -->
+                <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                    <button type="submit" class="btn-primary px-6 py-3 text-white font-medium rounded-lg focus:outline-none">
+                        Kirim Pendaftaran
+                    </button>
+                    <button type="reset" class="btn-secondary px-6 py-3 bg-white text-gray-700 font-medium border border-gray-300 rounded-lg focus:outline-none">
+                        Reset Formulir
+                    </button>
+                </div>
+            </form>
+            
+            <!-- Success Message -->
+            <div id="successMessage" class="success-message bg-green-50 p-8 text-center">
+                <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-100 mb-4">
+                    <svg class="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-2">Pendaftaran Berhasil!</h3>
+                <p class="text-gray-600 mb-6">Data pendaftaran Anda telah kami terima. Tim kami akan menghubungi Anda untuk proses selanjutnya.</p>
+                <button id="newRegistration" class="btn-primary px-6 py-3 text-white font-medium rounded-lg focus:outline-none">
+                    Pendaftaran Baru
+                </button>
+            </div>
+        </div>
+        
+        <div class="text-center text-gray-500 text-sm mt-6">
+            © 2023 SMK Islam-Almakiyah. Hak Cipta Dilindungi.
+        </div>
+    </div>
   <!-- Tambahkan skrip ini di akhir sebelum penutup body -->
   <script>
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzcn4kDyVBSFx91pHSFVTmBEgzXx_AQOzlsFjKxV1810VIRlZeJIY-WCwewJt7KrLmt/exec"; // Ganti dengan URL Web App GAS kamu
